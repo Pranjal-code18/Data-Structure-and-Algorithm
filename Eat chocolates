@@ -1,0 +1,47 @@
+#approach1: Brute force approach
+#Timecomplexity:O(N^2)
+#SpaceComplexity:O(N)
+
+
+#include<bits/stdc++.h>
+vector<int> countChocolates(int n, int k, vector<int> chocolates)
+{
+  int j=0;
+  vector<int>vec;
+   unordered_map<int,int>mp;
+  while(j<=n-k){
+    for(int i=j; i<j+k ; i++){
+      mp[chocolates[i]]++;
+    }
+    vec.push_back(mp.size());
+    mp.erase(chocolates[j]);
+    j++;
+  }
+  return vec;
+}
+
+
+
+#approach2: Sliding window technique
+#TimeComplexity:O(N)
+#SpaceComplexity:O(N)
+
+
+vector<int> countChocolates(int n, int k, vector<int> chocolates)
+{
+  int j=0,i=0;
+  vector<int>vec;
+  unordered_map<int,int>mp;
+  while(i<=n-k){
+    mp[chocolates[j]]++;
+    if(j-i+1<k){j++;}
+    else{
+      vec.push_back(mp.size());
+      mp[chocolates[i]]-=1;
+      if(mp[chocolates[i]] ==0){mp.erase(chocolates[i]);}
+      i++;
+      j++;
+    }
+  }
+  return vec;
+}
