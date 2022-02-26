@@ -1,0 +1,17 @@
+Node* intersect_ll(Node* L1, Node *L2){
+    Node* dummy=new Node(0);
+    Node* temp=dummy;
+    Node*a=L1,*b=L2;
+    while(a!=NULL && b!=NULL){
+        if(a->data==b->data){
+            Node* node=new Node(a->data);
+            temp->next=node;
+            temp=temp->next;
+            a=a->next;
+            b=b->next;
+        }
+        else if(a->data < b->data)a=a->next;
+        else if(b->data < a->data)b=b->next;
+    }
+    return dummy->next;
+}
