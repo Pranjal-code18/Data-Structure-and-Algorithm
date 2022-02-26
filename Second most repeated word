@@ -1,0 +1,18 @@
+#include<bits/stdc++.h>
+string second_repeat(vector<string> &arr, int n){
+    map<string,int>mp;   // map stores the element in a sorted fashion
+    int a=0;
+    for(int i=0 ; i<n ; i++){
+        mp[arr[i]]++;   // store the words in map respective to their frequency in vector
+        a=max(a,mp[arr[i]]); //store the count of first most repeated word 
+    }
+    int sec_max=0;
+    string ans="";
+    for(auto pr:mp){
+        if(pr.second>sec_max && pr.second<a){
+            sec_max=pr.second;
+            ans=pr.first;
+        }
+    }
+    return ans;
+}
