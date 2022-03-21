@@ -1,0 +1,13 @@
+class Solution {
+    bool powe(int i , int n){
+        long long ans=pow(2,i);
+        if(ans==n)return true;
+        else if(ans>n)return false;
+        else return powe(i+1,n);
+    }
+public:
+    bool isPowerOfTwo(int n) {
+        int i=0;
+        return powe(i,n);
+    }
+};
