@@ -1,0 +1,18 @@
+#include<bits/stdc++.h>
+class Solution {
+public:
+    bool static cmp(pair<int,int>a , pair<int,int>b){return a.second>b.second;}
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        unordered_map<int , int>map;
+        for(int i=0 ; i<nums.size() ; i++){map[nums[i]]++;}
+        vector<pair<int,int>>p;
+        for(auto pr:map){p.push_back({pr.first,pr.second});}
+        sort(p.begin(),p.end(),cmp);
+        vector<int>v;
+        for(auto pie:p){
+            if(k>0){v.push_back(pie.first);
+                   k--;}
+        }
+        return v;
+    }
+};
